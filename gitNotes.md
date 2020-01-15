@@ -171,3 +171,13 @@ SSH密钥生产命令 `ssh-keygen -t rsa -C "邮箱地址"`。
 ### cherry-pick
 
 `git cherry-pick commitId` **用于复制特定提交的修改到当前分支上**。
+
+### 远程库
+
+`git remote -v` 查看远程库信息。
+
+`git switch -c branchName origin/branchName` 表示在本地创建和远程分支对应的分支。建议本地和远程分支的名称最好一致。
+
+`git pull` 拉取远程库最新提交内容。
+
+`git branch --set-upstream-to <branch-name> origin/<branch-name>` 建立本地分支和远程分支的链接关系。
