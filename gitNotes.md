@@ -190,9 +190,9 @@ SSH密钥生产命令 `ssh-keygen -t rsa -C "邮箱地址"`。
 
 ### 标签
 
-tag 简单地看作时 commitID 的别名。
+tag 简单地看作是 commitID 的别名。
 
-#### 新建标签
+#### 创建标签
 
 `git tag <tagName>` 默认为 `HEAD`，也就是当前提交，也可以为指定 commitID 即``git tag <tagName> commitID。
 
@@ -214,7 +214,7 @@ tag 简单地看作时 commitID 的别名。
 
 删除本地标签：`git tag -d tagName` 。
 
-删除远程标签：
+删除远程标签（需要两步）：
 
 - 先删除本地标签 `git tag -d tagName`,
 
