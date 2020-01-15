@@ -89,8 +89,14 @@ git diff commitID -- <file>
 
 ### 远程仓库
 
-远程仓库与本地仓库之间的传输往往需要进行用户身份验证，如github，为我们提供了两种方式：`https` 和 `SSH`。
+远程仓库与本地仓库之间的传输往往需要进行用户身份验证，如 github，它为我们提供了两种连接方式：`https` 和 `SSH`。
 
 - `https` 使用该方式之后，对远程仓库执行 git clone、git fetch、git pull 或 git push 命令时，系统将要求您输入 GitHub 用户名和密码。可以使用命令 `git config --global credential.helper wincred` 告诉 Git（版本需大于或等于 1.7.10 ） 在每次与 GitHub 会话时记住您的 GitHub 用户名和密码。
 
 - `ssh` 对远程仓库执行 git clone、git fetch、git pull 或 git push 命令时，系统将提示您输入密码，并且必须提供您的 SSH 密钥密码。
+SSH密钥生产命令 `ssh-keygen -t rsa -C "邮箱地址"`。
+
+#### 关联远程仓库
+
+这里我们使用 `SSh` 方式，需要创建 SSH 密钥：
+`ssh-keygen -t rsa -C "email地址"` 之后在用户目录下复制 id_rsa.pub 文件的内容并添加到github。
