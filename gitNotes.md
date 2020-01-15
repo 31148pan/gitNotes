@@ -98,5 +98,124 @@ SSH密钥生产命令 `ssh-keygen -t rsa -C "邮箱地址"`。
 
 #### 关联远程仓库
 
-这里我们使用 `SSh` 方式，需要创建 SSH 密钥：
+这里我们使用 `SSh` 方式进行身份验证，需要创建 SSH 密钥：
 `ssh-keygen -t rsa -C "email地址"` 之后在用户目录下复制 id_rsa.pub 文件的内容并添加到github。
+
+关联远程仓库命令：<br/>
+`git remote add origin "仓库地址URL"` 参数 `origin` 为远程仓库名字，可任意取。
+
+#### 推送远程仓库
+
+`git push -u origin master` 表示将本地仓库推送到名为 origin 远程仓库的 master 分支上。
+
+添加`-u` 参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+
+#### 克隆远程仓库
+
+`git clone "仓库地址"`。
+
+### 分支
+
+分支诞生的初衷就是方便开发项目时处理不同的需求。针对不同的需求我们可以创建不同的分支，然后在该分支上工作。注意分支间的内容是互不干扰的，直到开发完毕再一次性合并到原来的分支上就可以了。
+
+#### 创建新分支
+
+`git branch <branchName>`。
+
+#### 查看分支
+
+`git branch` 会列出所有分支，当前分支前面会标一个`*`号。
+
+#### 切换分支
+
+`git checkout <branchName>` 或者 `git switch <branchName>`。
+
+#### 创建并切换分支
+
+`git checkout -b <branchName>` 或者 `git switch -c <branchName>`
+
+#### 合并分支
+
+`git merge <branch>` 表示合并指定分支到当前分支。
+
+#### 普通模式合并分支
+
+默认情况启动 `fast forward`快速合并模式。
+
+`git merge --no-ff -m "description" <branchName>` 添加参数 `--no-ff` ,表示进行普通模式合并，该模式合并分支后会创建一个新的 `commit` ，所以添加提交说明参数 `-m`。此时可以看出曾经做过合并操作。
+
+#### 查看分支合并图
+
+`git log --graph`
+
+#### 删除分支
+
+`git branch -d <branchName>` 该分支已合并。
+
+`git branch -D <branchName>` 该分支未合并。
+
+在不同分支上对同一文件的修改在进行分支合并时可能会造成冲突，需要我们手动解决，取舍修改的内容。
+
+### 保存工作现场
+
+`git stash` 用于存储当前的工作现场，以便我们进行其他的操作（如修复bug,添加新功能等）。
+
+### 查看工作现场
+
+`git stash list`
+
+### 恢复工作现场
+
+`git stash pop` 恢复工作现场的同时把stash存储的内容也删除了。
+
+`git stash apply` 恢复工作现场的同时保留stash存储的内容，需要删除时使用命令 `git stash drop`。
+
+### cherry-pick
+
+`git cherry-pick commitId` **用于复制特定提交的修改到当前分支上**。
+
+### 远程库
+
+`git remote -v` 查看远程库信息。
+
+`git switch -c branchName origin/branchName` 在本地创建和远程分支对应的分支。建议本地和远程分支的名称最好一致。因为默认从远程库clone下来的库，本地只有master主分支，故需要执行此命令。
+
+`git push origin branchName` 推送本地分支到远程。
+
+`git push origin -d branchName` 删除远程分支。
+
+`git pull` 拉取远程库最新提交内容。
+
+`git branch --set-upstream-to <branch-name> origin/<branch-name>` 该命令用于使用`git clone` 命令时，建立本地分支和远程分支的链接关系。注意的是如果执行 `git clone` 再执行 `git pull`命令后会默认建立本地分支与远程分支的关系，不需要执行该命令。
+
+### 标签
+
+tag 简单地看作是 commitID 的别名。
+
+#### 创建标签
+
+`git tag <tagName>` 默认为 `HEAD`，也就是当前提交，也可以为指定 commitID 即``git tag <tagName> commitID。
+
+`git tag -a <tagName> -m "description" commitID` 创建带有说明的标签，`-a`参数用于指定标签名，`-m` 用于指定标签说明文字。
+
+#### 显示标签信息
+
+`git tag` 查看所有标签。
+
+`git show tagName` 查看指定标签。
+
+#### 推送标签
+
+`git push origin TagName` 推送某个分支到远程。
+
+`git push origin --tags` 一次性推送全部尚未推送到远程的本地标签.
+
+#### 删除标签
+
+删除本地标签：`git tag -d tagName` 。
+
+删除远程标签（需要两步）：
+
+- 先删除本地标签 `git tag -d tagName`,
+
+- 再删除远程标签 `git push origin :refs/tags/tagName`。
