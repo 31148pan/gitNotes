@@ -150,7 +150,9 @@ SSH密钥生产命令 `ssh-keygen -t rsa -C "邮箱地址"`。
 
 #### 删除分支
 
-`git branch -d <branchName>`
+`git branch -d <branchName>` 该分支已合并。
+
+`git branch -D <branchName>` 该分支未合并。
 
 在不同分支上对同一文件的修改在进行分支合并时可能会造成冲突，需要我们手动解决，取舍修改的内容。
 
@@ -176,8 +178,44 @@ SSH密钥生产命令 `ssh-keygen -t rsa -C "邮箱地址"`。
 
 `git remote -v` 查看远程库信息。
 
-`git switch -c branchName origin/branchName` 表示在本地创建和远程分支对应的分支。建议本地和远程分支的名称最好一致。
+`git switch -c branchName origin/branchName` 在本地创建和远程分支对应的分支。建议本地和远程分支的名称最好一致。因为默认从远程库clone下来的库，本地只有master主分支，故需要执行此命令。
+
+`git push origin branchName` 推送本地分支到远程。
+
+`git push origin -d branchName` 删除远程分支。
 
 `git pull` 拉取远程库最新提交内容。
 
 `git branch --set-upstream-to <branch-name> origin/<branch-name>` 建立本地分支和远程分支的链接关系。
+
+### 标签
+
+tag 简单地看作时 commitID 的别名。
+
+#### 新建标签
+
+`git tag <tagName>` 默认为 `HEAD`，也就是当前提交，也可以为指定 commitID 即``git tag <tagName> commitID。
+
+`git tag -a <tagName> -m "description" commitID` 创建带有说明的标签，`-a`参数用于指定标签名，`-m` 用于指定标签说明文字。
+
+#### 显示标签信息
+
+`git tag` 查看所有标签。
+
+`git show tagName` 查看指定标签。
+
+#### 推送标签
+
+`git push origin TagName` 推送某个分支到远程。
+
+`git push origin --tags` 一次性推送全部尚未推送到远程的本地标签.
+
+#### 删除标签
+
+删除本地标签：`git tag -d tagName` 。
+
+删除远程标签：
+
+- 先删除本地标签 `git tag -d tagName`,
+
+- 再删除远程标签 `git push origin :refs/tags/tagName`。
