@@ -167,3 +167,7 @@ SSH密钥生产命令 `ssh-keygen -t rsa -C "邮箱地址"`。
 `git stash pop` 恢复工作现场的同时把stash存储的内容也删除了。
 
 `git stash apply` 恢复工作现场的同时保留stash存储的内容，需要删除时使用命令 `git stash drop`。
+
+### cherry-pick
+
+`git cherry-pick commitId` **用于复制特定提交的修改到当前分支上**。
