@@ -219,3 +219,7 @@ tag 简单地看作是 commitID 的别名。
 - 先删除本地标签 `git tag -d tagName`,
 
 - 再删除远程标签 `git push origin :refs/tags/tagName`。
+
+### rebase
+
+`git rebase`  rebase操作可以把本地未push的分叉提交历史整理成直线；可以使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。
