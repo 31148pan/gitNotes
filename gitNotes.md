@@ -186,7 +186,7 @@ SSH密钥生产命令 `ssh-keygen -t rsa -C "邮箱地址"`。
 
 `git pull` 拉取远程库最新提交内容。
 
-`git branch --set-upstream-to <branch-name> origin/<branch-name>` 建立本地分支和远程分支的链接关系。
+`git branch --set-upstream-to <branch-name> origin/<branch-name>` 该命令用于使用`git clone` 命令时，建立本地分支和远程分支的链接关系。注意的是如果执行 `git clone` 再执行 `git pull`命令后会默认建立本地分支与远程分支的关系，不需要执行该命令。
 
 ### 标签
 
