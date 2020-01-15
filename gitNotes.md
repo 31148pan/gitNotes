@@ -10,7 +10,7 @@ git 是一款分布式的版本控制软件。与集中式版本控制软件（S
 
 ### 下载与配置
 
-[下载](https://git-scm.com/downloads)安装之后，需要配置一下当前操作者信息，以区分多人开发。命令如下：
+[下载](https://git-scm.com/downloads) 安装之后，需要配置一下当前操作者信息，以区分多人开发。命令如下：
 
 ```sh
 git config user.name "你的名字"
