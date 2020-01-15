@@ -46,3 +46,51 @@ git diff HEAD -- <file>
 ### 查看总过去与某版本库区别
 git diff commitID -- <file>
 ```
+
+### 查看提交日志
+
+`git log`  常用于查看项目的历史提交。如果提交日志太多查看起来很不方便，可以添加参数 `--pretty=oneline` 简化日志输出。
+
+### 查看命令历史
+
+`git reflog` 用于查看该仓库内使用过的git 命令。
+
+### 版本回退
+
+`git reset --hard HEAD^` 返回上一个项目版本。`HEAD` 表示当前版本，`HEAD^` 表示上一个版本，上上一个版本时 `HEAD^^`，往上一百个版本为`HEAD~100`。
+
+通常我们会使用项目的版本号 `commitID`  回退到指定的版本。命令为 `git reset --hard commitID`。
+
+### 撤销修改内容
+
+#### 丢弃工作区的修改
+
+使用快捷键 `ctrl + z`,No ,那样太没逼格了。使用命令 `git checkout -- <file>`。注意不要忘记参数 `--`，因为`git checkout <branchName>`是切换分支命令，会操作失败。
+
+`git checkout -- <file>` 撤销工作区修改分两种情况：
+
+- 文件修改后还没有放到暂存区，现在撤销修改就和最新版本库一摸一样状态。
+
+- 文件已添加到暂存区，现在又做了修改,现在撤销修改就回到添加到暂存区后的状态
+
+#### 丢弃暂存区的修改
+
+分为两步：第一步，先把暂存区内的修改撤销掉，重新放回工作区，使用命令`git reset HEAD <file>`;第二步，撤销工作区修改，使用命令 `git checkout -- <file>` 。
+
+### 删除文件
+
+`git rm <file>`。相当于执行 `rm <file>` 和 `git add <file>`
+
+删除文件分为两种情况：
+
+- 误删，误删除工作区文件，使用命令 `git checkout -- <file>`；误删除暂存区文件，使用命令 `git reset HEAD <file>` 和 `git checkout -- <file>`。
+
+- 确认删除，使用命令 `git rm <file>` 和 `git commit -m "删除了文件file"`。之后版本库就不会含有该文件。
+
+### 远程仓库
+
+远程仓库与本地仓库之间的传输往往需要进行用户身份验证，如github，为我们提供了两种方式：`https` 和 `SSH`。
+
+- `https` 使用该方式之后，对远程仓库执行 git clone、git fetch、git pull 或 git push 命令时，系统将要求您输入 GitHub 用户名和密码。可以使用命令 `git config --global credential.helper wincred` 告诉 Git（版本需大于或等于 1.7.10 ） 在每次与 GitHub 会话时记住您的 GitHub 用户名和密码。
+
+- `ssh` 对远程仓库执行 git clone、git fetch、git pull 或 git push 命令时，系统将提示您输入密码，并且必须提供您的 SSH 密钥密码。
