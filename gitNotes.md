@@ -98,5 +98,56 @@ SSH密钥生产命令 `ssh-keygen -t rsa -C "邮箱地址"`。
 
 #### 关联远程仓库
 
-这里我们使用 `SSh` 方式，需要创建 SSH 密钥：
+这里我们使用 `SSh` 方式进行身份验证，需要创建 SSH 密钥：
 `ssh-keygen -t rsa -C "email地址"` 之后在用户目录下复制 id_rsa.pub 文件的内容并添加到github。
+
+关联远程仓库命令：<br/>
+`git remote add origin "仓库地址URL"` 参数 `origin` 为远程仓库名字，可任意取。
+
+#### 推送远程仓库
+
+`git push -u origin master` 表示将本地仓库推送到名为 origin 远程仓库的 master 分支上。
+
+添加`-u` 参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+
+#### 克隆远程仓库
+
+`git clone "仓库地址"`。
+
+### 分支
+
+分支诞生的初衷就是方便开发项目时处理不同的需求。针对不同的需求我们可以创建不同的分支，然后在该分支上工作。注意分支间的内容是互不干扰的，直到开发完毕再一次性合并到原来的分支上就可以了。
+
+#### 创建新分支
+
+`git branch <branchName>`。
+
+#### 查看分支
+
+`git branch` 会列出所有分支，当前分支前面会标一个`*`号。
+
+#### 切换分支
+
+`git checkout <branchName>` 或者 `git switch <branchName>`。
+
+#### 创建并切换分支
+
+`git checkout -b <branchName>` 或者 `git switch -c <branchName>`
+
+#### 合并分支
+
+`git merge <branch>` 表示合并指定分支到当前分支。
+
+#### 普通模式合并分支
+
+默认情况启动 `fast forward`快速合并模式。
+
+`git merge --no-ff -m "description" <branchName>` 添加参数 `--no-ff` ,表示进行普通模式合并，该模式合并分支后会创建一个新的 `commit` ，所以添加提交说明参数 `-m`。此时可以看出曾经做过合并操作。
+
+#### 查看分支合并图
+
+`git log --gragh`
+
+#### 删除分支
+
+`git branch -d <branchName>`
