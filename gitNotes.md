@@ -146,7 +146,7 @@ SSH密钥生产命令 `ssh-keygen -t rsa -C "邮箱地址"`。
 
 #### 查看分支合并图
 
-`git log --gragh`
+`git log --graph`
 
 #### 删除分支
 
@@ -157,3 +157,13 @@ SSH密钥生产命令 `ssh-keygen -t rsa -C "邮箱地址"`。
 ### 保存工作现场
 
 `git stash` 用于存储当前的工作现场，以便我们进行其他的操作（如修复bug,添加新功能等）。
+
+### 查看工作现场
+
+`git stash list`
+
+### 恢复工作现场
+
+`git stash pop` 恢复工作现场的同时把stash存储的内容也删除了。
+
+`git stash apply` 恢复工作现场的同时保留stash存储的内容，需要删除时使用命令 `git stash drop`。
